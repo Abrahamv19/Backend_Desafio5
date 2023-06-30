@@ -1,0 +1,24 @@
+<nav>
+    <div>
+         <img src="https://res.cloudinary.com/abrahama19/image/upload/v1688144787/playstation-store-1000x600_chbab7.jpg" width="333" height="200"/>
+    </div>
+    <div class="dashboard-container">
+        {{#if session}}
+        <p class="welcome-message">Welcome {{session.firstName}}</p>
+        <h2 class="profile-title">Profile</h2>
+        <div class="profile-details text-center">
+            <div>
+                <p>Name: {{session.firstName}} {{session.lastName}}</p>
+                <p>Email: {{session.email}}</p>
+                <p>Rol: {{session.role}}</p>
+            </div>
+        </div>
+        <button id="logout-btn" type="submit" class="btn btn-primary">Logout</button>
+        {{else}}
+            <p class="guest-message">Welcome to PS5 Store</p>
+            <a href="/?login=true" class="btn btn-primary">LOGIN</a>
+            <a href="/?register=true" class="btn btn-warning">REGISTER</a>
+        {{/if}}
+    </div>
+</nav>
+<script src="/js/profileController.js"></script>

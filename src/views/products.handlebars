@@ -1,0 +1,54 @@
+{{#if session}}
+    <div class="text-center bg-info">
+        <h2>Welcome, {{session.firstName}} {{session.lastName}}</h2>
+        <p>Email: {{session.email}}</p>
+         <p>Rol: {{session.role}}</p>
+        <button id="logout-btn" class="btn btn-primary">Logout</button>
+    </div>
+{{else}}
+    <p class="guest-message">WELCOME TO PS5 STORE</p>
+    <a href="/?login=true" class="sign-in-link button is-light">LOG IN</a>
+    <a href="/?register=true" class="register-link button is-primary">SIGN UP</a>
+{{/if}}
+    <section>
+        <h1 style="margin-top: 25px" class="title__productspage">PRODUCT LIST</h1>
+        <div class="row product justify-content-evenly containerFlex">
+          
+            {{#each productsVisualice}}
+                <div class="containerCard containerProd itemFlex" style="width: 14rem; margin-top: 5px;" id="{{this._id}}">
+                    <div style="margin-top: 10px; width:200px; height:200px;">
+                        <img src={{this.thumbnail}} alt="Product picture {{this.id}}"  width="155" height="198">
+                    </div>
+                    <div class="card-body">
+                        <h3 id="titleProduct" class="card-title">{{this.title}}</h3>
+                        <p id="descriptionProduct" class="card-text">{{this.description}}</p>
+                        <p id="priceProduct" class="card-text">$ {{this.price}}</p>
+                        <button onclick="putIntoCart('{{this._id}}')">Add to 🛒</button>
+                        <br />
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </section>
+
+<section>
+    <div style="display: flex; justify-content: space-between; padding: 30px">
+        <div> SORT BY PRICE
+            <a href="?page=1&limit={{paginationInfo.limit}}&sort=asc&price={{price}}&status={{status}}">⬆️</a>
+            <a href="?page=1&limit={{paginationInfo.limit}}&sort=desc&price={{price}}&status={{status}}">⬇️</a>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center; margin-top: 30px">
+    <div class="pagination">
+        {{#if paginationInfo.hasPrevPage}}
+        <a href="?page={{paginationInfo.prevPage}}&limit={{paginationInfo.limit}}&sort={{sort}}&price={{price}}&status={{status}}">⬅️ Preview</a>
+        {{/if}}
+        <span style="margin-left: 20px; margin-right: 20px">Page {{paginationInfo.page}} of {{paginationInfo.totalPages}}</span>
+        {{#if paginationInfo.hasNextPage}}
+        <a href="?page={{paginationInfo.nextPage}}&limit={{paginationInfo.limit}}&sort={{sort}}&price={{price}}&status={{status}}">Next ➡️</a>
+        {{/if}}
+    </div>
+    </div>
+</section>
+
+<script src="/js/profileController.js"></script>

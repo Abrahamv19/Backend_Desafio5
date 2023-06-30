@@ -1,0 +1,113 @@
+
+<section>
+  <div class="container mt-6" style="max-width: 800px">
+    <form id="formProducts" class= "styleForm">
+        <h3 class="is-size-3 mb-5 text-center">ADD NEW PRODUCT</h3>
+          <div class="field">
+            <label for="title" class="label">Title</label>
+            <div class="control">
+              <input class="input is-success" type="text" placeholder="Add product title" value="" name="title"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea value="" name="description" class="textarea is-success" placeholder="Add product description" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Code</label>
+            <div class="control">
+              <input class="input is-success" type="text" placeholder="Add product code" value="" name="code"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Price</label>
+            <div class="control">
+              <input
+                class="input is-success" type="text" placeholder="Add product price" value="" name="price"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Stock</label>
+            <div class="control">
+              <input
+                class="input is-success" type="number" min="0" max="10000" value="0" name="stock"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Status</label>
+            <div class="control">
+              <input style="margin-top: 10px" type="hidden" class="form-control" value="true" name="status" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Category</label>
+            <div class="control">
+              <div class="select is-primary">
+                <select name="category">
+                  <option value="Accion">Accion</option>
+                  <option value="Aventura">Aventura</option>
+                  <option value="Deportes">Deportes</option>
+                  <option value="Terror">Terror</option>
+                </select>
+              </div>
+            </div>
+          <div class="field">
+            <label class="label">Image</label>
+            <div class="control">
+              <input class="input is-success" type="text" placeholder="Add image url" value="" name="thumbnail"/>
+            </div>
+          </div>
+  
+            <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary is-light">Add Product</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="mt-6">
+  <div id="cardContainer" idstyle="text-align: center;" class="container is-flex is-flex-wrap-wrap">
+            <div> SORT
+            <a href="?page={{paginationInfo.page}}&limit={{paginationInfo.limit}}&sort=asc">⬆️</a>
+            <a href="?page={{paginationInfo.page}}&limit={{paginationInfo.limit}}&sort=desc">⬇️</a>
+        </div>
+    {{#each productsVisualice}}
+            <div class="card" style="width: 150px; margin: 20px">
+        <div class="card-image" style="padding: 15px">
+          <figure class="image is-4by3">
+                <img src={{this.thumbnail}} alt="foto de Product {{this.id}}">
+          </figure>
+        </div>
+        <div class="card-content" >
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-6">Title: {{this.title}}</p>
+              <p class="subtitle is-6">Description: {{this.description}}</p>
+              <p class="subtitle is-6">Price: {{this.price}}</p>
+              <p class="subtitle is-6">Stock: {{this.stock}}</p>
+              <p class="subtitle is-6">Category: {{this.category}}</p>
+            </div>
+          </div>
+          <button id="deleteButton" class="button is-small delete-button" type="button" data-product-id="{{this.id}}">
+          <ion-icon name="trash"></ion-icon></button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div style="display: flex; justify-content: center; margin-top: 30px">
+    <div class="pagination">
+        {{#if paginationInfo.hasPrevPage}}
+        <a href="?page={{paginationInfo.prevPage}}&limit={{paginationInfo.limit}}&sort={{sort}}">⬅️ Preview</a>
+        {{/if}}
+        <span style="margin-left: 20px; margin-right: 20px">Page {{paginationInfo.page}} of {{paginationInfo.totalPages}}</span>
+        {{#if paginationInfo.hasNextPage}}
+        <a href="?page={{paginationInfo.nextPage}}&limit={{paginationInfo.limit}}&sort={{sort}}">Next ➡️</a>
+        {{/if}}
+    </div>
+</div>
+</section>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

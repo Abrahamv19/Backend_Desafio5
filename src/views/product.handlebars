@@ -1,0 +1,40 @@
+{{!-- <div>
+  <img src={{product.thumbnail}} alt="Product picture {{this.id}}"  width="155" height="198">
+  <h1>
+    Title:
+    {{product.title}}
+  </h1>
+  <h2>
+    Price:
+    {{product.price}}
+  </h2>
+
+  <h2>
+    Category:
+    {{product.category}}
+  </h2>
+</div> --}}
+<br>
+<div class="d-flex justify-content-center align-items-center">
+  <div class="containerCard containerProd itemFlex" style="width: 14rem; margin-top: 5px;" id="{{this._id}}">
+      
+      <div class="card-body">
+            <img src={{product.thumbnail}} alt="Product picture {{this.id}}"  width="155" height="198">
+                  <h1>
+                    Title:
+                    {{product.title}}
+                  </h1>
+                  <h2>
+                    Price:
+                    {{product.price}}
+                  </h2>
+
+                  <h2>
+                    Category:
+                    {{product.category}}
+                  </h2>
+          {{!-- <button onclick="putIntoCart('{{product._id}}')">Add to 🛒</button> --}}
+          <br />
+      </div>
+  </div>
+</div>
